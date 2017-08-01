@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Twitty_App</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">jv2jKbjGdF6jRZ85Tv6RTscqC</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">4DuhkYTczyeeyEuOkhCywGSuwY1fl4jgYVPT8ynXW1wTR8VJq5</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

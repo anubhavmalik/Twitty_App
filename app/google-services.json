@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "530970969055",
+    "firebase_url": "https://twittyapp-e015b.firebaseio.com",
+    "project_id": "twittyapp-e015b",
+    "storage_bucket": "twittyapp-e015b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530970969055:android:ede47b88578b1af8",
+        "android_client_info": {
+          "package_name": "com.example.anubhav.twitty_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530970969055-40493cmj3782homu8artrtaoo8oihp9e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anubhav.twitty_app",
+            "certificate_hash": "5db1f616151aedcbf675eb308ccae27ac44546fc"
+          }
+        },
+        {
+          "client_id": "530970969055-4a0t6rvqtsmrogf15pnd248ft8gnip2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPSKzWInXJpg0eUGkr_Aweqfz0QQ7F5Zk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530970969055-4a0t6rvqtsmrogf15pnd248ft8gnip2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
