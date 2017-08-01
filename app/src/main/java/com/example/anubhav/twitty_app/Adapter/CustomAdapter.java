@@ -1,4 +1,4 @@
-package com.example.anubhav.twitty_app;
+package com.example.anubhav.twitty_app.Adapter;
 
 import android.content.Context;
 import android.view.View;

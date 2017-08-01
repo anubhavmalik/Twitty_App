@@ -1,4 +1,4 @@
-package com.example.anubhav.twitty_app;
+package com.example.anubhav.twitty_app.Networking;
 
 import com.twitter.sdk.android.core.models.Tweet;
 

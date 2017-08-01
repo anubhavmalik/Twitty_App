@@ -1,6 +1,6 @@
-package com.example.anubhav.twitty_app;
+package com.example.anubhav.twitty_app.Networking;
 
-import com.twitter.sdk.android.core.TwitterApiClient;
+import com.example.anubhav.twitty_app.Utilities.TwitterUtils;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
