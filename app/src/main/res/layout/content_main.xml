@@ -8,12 +8,5 @@
     tools:context="com.example.anubhav.twitty_app.Visible_Activities.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <com.twitter.sdk.android.core.identity.TwitterLoginButton
-        android:id="@+id/twitter_login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
 
 </android.support.v4.widget.NestedScrollView>

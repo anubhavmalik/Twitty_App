@@ -26,16 +26,26 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".Visible_Activities.LogInActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_log_in"
-            android:theme="@style/FullscreenTheme">
+        <!--<activity-->
+            <!--android:name=".Visible_Activities.LoginActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden|screenSize"-->
+            <!--android:label="@string/title_activity_log_in"-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <activity android:name=".Visible_Activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Visible_Activities.LoginActivity">
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+
         </activity>
     </application>
 
