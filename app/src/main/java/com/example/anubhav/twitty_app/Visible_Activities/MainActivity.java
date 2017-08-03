@@ -9,21 +9,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.anubhav.twitty_app.R;
 import com.example.anubhav.twitty_app.Services.FirebaseService;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.OAuthSigning;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterAuthToken;
+import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterSession;
-import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseService firebaseService;
-    TwitterLoginButton twitterLoginButton;
+    TwitterSession session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Twitter.initialize(this);
+        TwitterAuthConfig authConfig = TwitterCore.getInstance().getAuthConfig();
+        TwitterAuthToken authToken = session.getAuthToken();
+        OAuthSigning oAuthSigning = new OAuthSigning(authConfig, authToken);
 
 //        Log.i("Firebase_main_token",firebaseService.token);
 
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        }  else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_send) {
 
         }
 
