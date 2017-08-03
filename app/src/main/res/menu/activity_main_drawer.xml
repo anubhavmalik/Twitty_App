@@ -42,6 +42,14 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Screenshot and Send" />
+            <item
+                android:id="@+id/nav_about"
+                android:title="About us"
+                android:icon="@drawable/about_us"/>
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout"
+                android:icon="@drawable/logout_icon"/>
         </menu>
     </item>
 

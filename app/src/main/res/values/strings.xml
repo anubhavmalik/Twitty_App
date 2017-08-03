@@ -11,4 +11,6 @@
     <string name="title_activity_log_in">LogInActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="about">Twitty is your twitter app buddy</string>
 </resources>

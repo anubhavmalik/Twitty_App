@@ -11,10 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.anubhav.twitty_app.AboutActivity;
 import com.example.anubhav.twitty_app.Adapter.CustomAdapter;
 import com.example.anubhav.twitty_app.Networking.ApiInterface;
 import com.example.anubhav.twitty_app.Networking.MyTwitterApiClient;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     CustomAdapter customAdapter;
     ListView profileListView;
     ProgressBar progressBar;
+    Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +58,15 @@ public class MainActivity extends AppCompatActivity
         profileListView = (ListView) findViewById(R.id.profile_list);
 //        TwitterAuthConfig authConfig = TwitterCore.getInstance().getAuthConfig();
 //        session= new TwitterSession()
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(R.string.com_twitter_sdk_android_CONSUMER_KEY + "", R.string.com_twitter_sdk_android_CONSUMER_SECRET + "");
+        progressBar=(ProgressBar) findViewById(R.id.progress_bar);
+        showProgress(true);
+
+        logoutButton=(Button) findViewById(R.id.nav_logout);
+        final TwitterAuthConfig authConfig = new TwitterAuthConfig(R.string.com_twitter_sdk_android_CONSUMER_KEY + "", R.string.com_twitter_sdk_android_CONSUMER_SECRET + "");
         TwitterAuthToken authToken = new TwitterAuthToken("851119038168051713-oSCvGHS8nMkOElBxC8q5PjZ6IfwVvq5","7CfGlq2J5cp4zV77PQCuk2tL8jNZIUhwVdmEeDws6gyun");
         OAuthSigning oAuthSigning = new OAuthSigning(authConfig, authToken);
 
+        getHomeTimeline();
 //        Log.i("Firebase_main_token",firebaseService.token);
 
 
@@ -118,6 +126,10 @@ public class MainActivity extends AppCompatActivity
             //tools
         } else if (id == R.id.nav_send) {
             //sceenshot and send using app you want
+        } else if(id==R.id.nav_about) {
+            startActivity(new Intent(MainActivity.this, AboutActivity.class));
+        } else if(id==R.id.nav_logout){
+            logout(logoutButton);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -138,12 +150,12 @@ public class MainActivity extends AppCompatActivity
 
                 customAdapter = new CustomAdapter(MainActivity.this, homeTimeline, MainActivity.this);
                 profileListView.setAdapter(customAdapter);
-//                showProgress(false);
+                showProgress(false);
             }
 
             @Override
             public void onFailure(Call<ArrayList<Tweet>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Check ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -158,6 +170,9 @@ public class MainActivity extends AppCompatActivity
         TwitterCore.getInstance().getSessionManager().clearActiveSession();
         startActivity(new Intent(this, LoginActivity.class));
         finish();
+    }
+    private void showProgress(boolean show) {
+        progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
 }
