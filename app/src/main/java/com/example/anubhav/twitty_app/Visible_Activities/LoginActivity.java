@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        twitterLoginButton.onActivityResult(requestCode, resultCode, data);
+        twitterLoginButton.onActivityResult(requestCode,resultCode,data);
     }
 
     @Override
@@ -30,9 +30,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final Intent i = new Intent(LoginActivity.this, MainActivity.class);
-        if (TwitterUtils.getSession() != null) {
-            startActivity(i);
-        }
+//        if(TwitterUtils.getSession()!=null){
+//            startActivity(i);
+//        }
         twitterLoginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override

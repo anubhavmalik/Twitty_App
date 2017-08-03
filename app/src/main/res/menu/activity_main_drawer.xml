@@ -2,10 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Timeline"
+            android:icon="@drawable/thinhome_iconmd"
+            />
         <item
             android:id="@+id/nav_trending"
             android:title="Trending"
             android:icon="@mipmap/trending_one"/>
+
+
         <!--<item-->
             <!--android:id="@+id/nav_camera"-->
             <!--android:icon="@drawable/ic_menu_camera"-->

@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.anubhav.twitty_app.Adapter.CustomAdapter;
@@ -35,13 +36,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
-        implements   CustomAdapter.OnTweetClickListener,
-                     NavigationView.OnNavigationItemSelectedListener  {
+        implements CustomAdapter.OnTweetClickListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseService firebaseService;
     TwitterSession session;
     CustomAdapter customAdapter;
     ListView profileListView;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Twitter.initialize(this);
-        profileListView=(ListView)findViewById(R.id.profile_list);
-        TwitterAuthConfig authConfig = TwitterCore.getInstance().getAuthConfig();
-        TwitterAuthToken authToken = session.getAuthToken();
+        profileListView = (ListView) findViewById(R.id.profile_list);
+//        TwitterAuthConfig authConfig = TwitterCore.getInstance().getAuthConfig();
+//        session= new TwitterSession()
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(R.string.com_twitter_sdk_android_CONSUMER_KEY + "", R.string.com_twitter_sdk_android_CONSUMER_SECRET + "");
+        TwitterAuthToken authToken = new TwitterAuthToken("851119038168051713-oSCvGHS8nMkOElBxC8q5PjZ6IfwVvq5","7CfGlq2J5cp4zV77PQCuk2tL8jNZIUhwVdmEeDws6gyun");
         OAuthSigning oAuthSigning = new OAuthSigning(authConfig, authToken);
 
 //        Log.i("Firebase_main_token",firebaseService.token);
@@ -109,17 +113,18 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_trending) {
             // Handle the trending action
         } else if (id == R.id.nav_share) {
-
+            //shares app link
         } else if (id == R.id.nav_manage) {
-
+            //tools
         } else if (id == R.id.nav_send) {
-
+            //sceenshot and send using app you want
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     private void getHomeTimeline() {
         ApiInterface apiInterface = MyTwitterApiClient.getApiInterface();
         Call<ArrayList<Tweet>> call = apiInterface.getHomeTimeline();
@@ -138,6 +143,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Call<ArrayList<Tweet>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Check ", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -155,3 +161,4 @@ public class MainActivity extends AppCompatActivity
     }
 
 }
+//514+475+223+342+203
