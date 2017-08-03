@@ -1,7 +1,9 @@
 package com.example.anubhav.twitty_app.Visible_Activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -31,7 +33,10 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.tweetui.FixedTweetTimeline;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -125,7 +130,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
             //tools
         } else if (id == R.id.nav_send) {
-            //sceenshot and send using app you want
+            //screenshot and send using app you want
+            takeScreenshot();
         } else if(id==R.id.nav_about) {
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
         } else if(id==R.id.nav_logout){
@@ -173,6 +179,35 @@ public class MainActivity extends AppCompatActivity
     }
     private void showProgress(boolean show) {
         progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+    private void takeScreenshot() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+//            openScreenshot(imageFile);
+        } catch (Throwable e) {
+            // Several error may come out with file handling or OOM
+            e.printStackTrace();
+            Toast.makeText(MainActivity.this, "Couldn't take screenshot", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

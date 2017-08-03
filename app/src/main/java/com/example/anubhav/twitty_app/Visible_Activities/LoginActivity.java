@@ -30,16 +30,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final Intent i = new Intent(LoginActivity.this, MainActivity.class);
-        if(TwitterUtils.getSession()!=null){
-            startActivity(i);
-        }
+//        if(TwitterUtils.getSession()!=null){
+//            startActivity(i);
+//        }
         twitterLoginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
                 TwitterSession session = result.data;
                 startActivity(i);
-                finish();
+
             }
 
             @Override
