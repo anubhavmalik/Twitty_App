@@ -19,7 +19,6 @@ public class MyTwitterApiClient {
             retrofit = new Retrofit.Builder()
                     .baseUrl("https://api.twitter.com/1.1/")
                     .addConverterFactory(GsonConverterFactory.create())
-                    // Twitter interceptor
                     .client(new OkHttpClient.Builder()
                             .addInterceptor(TwitterUtils.getInterceptor())
                             .build())

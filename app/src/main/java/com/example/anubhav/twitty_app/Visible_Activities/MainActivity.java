@@ -1,5 +1,6 @@
 package com.example.anubhav.twitty_app.Visible_Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,7 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.anubhav.twitty_app.Adapter.CustomAdapter;
+import com.example.anubhav.twitty_app.Networking.ApiInterface;
+import com.example.anubhav.twitty_app.Networking.MyTwitterApiClient;
 import com.example.anubhav.twitty_app.R;
 import com.example.anubhav.twitty_app.Services.FirebaseService;
 import com.twitter.sdk.android.core.OAuthSigning;
@@ -18,12 +25,23 @@ import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.tweetui.FixedTweetTimeline;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements   CustomAdapter.OnTweetClickListener,
+                     NavigationView.OnNavigationItemSelectedListener  {
 
     FirebaseService firebaseService;
     TwitterSession session;
+    CustomAdapter customAdapter;
+    ListView profileListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Twitter.initialize(this);
+        profileListView=(ListView)findViewById(R.id.profile_list);
         TwitterAuthConfig authConfig = TwitterCore.getInstance().getAuthConfig();
         TwitterAuthToken authToken = session.getAuthToken();
         OAuthSigning oAuthSigning = new OAuthSigning(authConfig, authToken);
@@ -101,4 +120,38 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void getHomeTimeline() {
+        ApiInterface apiInterface = MyTwitterApiClient.getApiInterface();
+        Call<ArrayList<Tweet>> call = apiInterface.getHomeTimeline();
+        call.enqueue(new Callback<ArrayList<Tweet>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Tweet>> call, Response<ArrayList<Tweet>> response) {
+
+                FixedTweetTimeline homeTimeline = new FixedTweetTimeline.Builder()
+                        .setTweets(response.body())
+                        .build();
+
+                customAdapter = new CustomAdapter(MainActivity.this, homeTimeline, MainActivity.this);
+                profileListView.setAdapter(customAdapter);
+//                showProgress(false);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Tweet>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onTweetClicked(int position, Tweet tweet) {
+        Toast.makeText(this, tweet.text, Toast.LENGTH_SHORT).show();
+    }
+
+    public void logout(View view) {
+        TwitterCore.getInstance().getSessionManager().clearActiveSession();
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
 }

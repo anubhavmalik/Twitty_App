@@ -23,4 +23,6 @@ public interface ApiInterface {
 
     @POST("statuses/destroy/{id}.json")
     Call<Tweet> deleteTweet(@Path("id") String id);
+
+
 }
