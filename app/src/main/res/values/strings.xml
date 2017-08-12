@@ -13,4 +13,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="about">Twitty is your twitter app buddy</string>
+    <string name="query_hint">Enter your search</string>
 </resources>

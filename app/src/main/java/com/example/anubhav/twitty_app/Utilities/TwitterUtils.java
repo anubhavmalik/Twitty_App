@@ -17,9 +17,9 @@ import java.util.Map;
  */
 
 public class TwitterUtils {
-
-
     //This class stores authconfig and session and has utility functions
+
+
 
     private static TwitterAuthConfig authConfig = TwitterCore.getInstance().getAuthConfig();
     private static TwitterSession twitterSession = TwitterCore.getInstance().getSessionManager().getActiveSession();

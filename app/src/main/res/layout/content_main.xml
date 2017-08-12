@@ -8,6 +8,12 @@
     tools:context="com.example.anubhav.twitty_app.Visible_Activities.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </android.support.v4.widget.NestedScrollView>

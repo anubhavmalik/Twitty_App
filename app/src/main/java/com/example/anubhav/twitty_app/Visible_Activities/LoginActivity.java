@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.anubhav.twitty_app.R;
-import com.example.anubhav.twitty_app.Utilities.TwitterUtils;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
@@ -21,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        twitterLoginButton.onActivityResult(requestCode,resultCode,data);
+        twitterLoginButton.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -30,7 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final Intent i = new Intent(LoginActivity.this, MainActivity.class);
-//        if(TwitterUtils.getSession()!=null){
+//        TwitterUtils.refresh();
+//        if (TwitterUtils.getSession() != null || TwitterUtils.getAuthToken()!= null) {
 //            startActivity(i);
 //        }
         twitterLoginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
@@ -39,16 +39,12 @@ public class LoginActivity extends AppCompatActivity {
             public void success(Result<TwitterSession> result) {
                 TwitterSession session = result.data;
                 startActivity(i);
-
             }
 
             @Override
             public void failure(TwitterException exception) {
-
                 Snackbar.make(twitterLoginButton, "Login Unsuccessful", Snackbar.LENGTH_SHORT).show();
-
             }
         });
-
     }
 }

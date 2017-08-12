@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.anubhav.twitty_app.AboutActivity">
+    tools:context="com.example.anubhav.twitty_app.Utilities.AboutActivity">
 
     <TextView
         android:layout_width="match_parent"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
@@ -10,21 +10,32 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="75dp"
         android:layout_height="64dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/twitter_bird" />
-
-    <TextView
+        app:srcCompat="@drawable/twitter_bird"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+    <ImageView
+        android:id="@+id/nav_background_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Drawer"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:layout_height="fill_parent"
+        android:layout_above="@id/imageView2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="582dp" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingTop="@dimen/nav_header_vertical_spacing"-->
+        <!--android:text="Drawer"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentTop="true" />-->
 
     <!--<TextView-->
         <!--android:id="@+id/sidenav_textView"-->
@@ -32,4 +43,4 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:text="android.studio@android.com" />-->
 
-</LinearLayout>
+</RelativeLayout>
